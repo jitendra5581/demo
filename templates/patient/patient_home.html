@@ -15,6 +15,7 @@
         <th>Timings</th>
         <th>Days</th>
           <th>Duration</th>
+          <th></th>
       </tr>
     </thead>
     <tbody>
@@ -24,6 +25,8 @@
         <td>{{ rec.foodtimes }}</td>
         <td>{{ rec.foodtakenday }}</td>
         <td>{{ rec.takenduration }}</td>
+       <td><a onclick="return confirm('Do You want to delete?')" href="{% url 'deldiet' %}?id={{ rec.id }}">Delete</a> | <a href="{% url 'editdiet' %}?id={{ rec.id }}">Edit</a> </td>
+
       </tr>
     {% endfor %}
 

@@ -19,15 +19,21 @@
                         <form id="schedule-form" method="post" class="form">
                             {% csrf_token %}
 
-                            <h3 class="text-center text-info">Create Schedule</h3>
+                            <h3 class="text-center text-info">Edit Schedule</h3>
+
+                            <div class="form-group">
+
+                                <input type="hidden" value="{{ data.id }}"  name="tbId"  class="form-control">
+                            </div>
+
                             <div class="form-group">
                                 <label for="food_item" class="text-info">Food Item:</label><br>
-                                <input type="text" required name="tbFoodName" id="tbFoodName" class="form-control">
+                                <input type="text" value="{{ data.fooditem }}" required name="tbFoodName" id="tbFoodName" class="form-control">
                             </div>
 
                             <div class="form-group">
                                 <label for="foodtiming" class="text-info">Select Timing:</label><br>
-                                <input style="width:390px;height: 30px"  type="time" name="tbTime" id="tbTime">
+                                <input style="width:390px;height: 30px" value="{{ data.foodtimes }}"  type="time" name="tbTime" id="tbTime">
                              <button type="button" id="button_timing" class="btn btn-default btn-sm">
                                 <span class="glyphicon glyphicon-plus"></span>
                                 </button>
@@ -41,7 +47,7 @@
 
 
                                 </p>
-                                <input type="hidden" id="tbHiddenTime" name="tbHiddenTime"/>
+                                <input type="hidden" value="{{ data.foodtimes }}" id="tbHiddenTime" name="tbHiddenTime"/>
                             </div>
 
                             <div class="form-group">
@@ -71,11 +77,11 @@
 <p id="days">
 
 </p>
- <input type="hidden" id="tbHiddenDays" name="tbHiddenDays"/>
+ <input value="{{ data.foodtakenday }}" type="hidden" id="tbHiddenDays" name="tbHiddenDays"/>
                             </div>
                             <div class="form-group">
                                 <label for="foodduration" class="text-info">Food Duration:</label><br>
-                                <input type="text" required name="tbDuration" id="tbDuration" class="form-control">
+                                <input type="text" value="{{ data.takenduration }}" required name="tbDuration" id="tbDuration" class="form-control">
                             </div>
                             <div class="form-group">
 
@@ -168,8 +174,7 @@
 
         );
 
-
-            //validation
+            //validation...
 
              $("#btnCreate").click(
             function ()
@@ -208,7 +213,6 @@
             }
 
         );
-
 
 
 

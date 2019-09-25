@@ -72,3 +72,37 @@ def add_diet(request):
        return render(request, 'patient/add_diet.html')
 
 
+
+def delete_diet_view(request):
+    sid=request.GET.get('id')
+
+    DietDetails.objects.filter(id=sid).delete()
+
+    return redirect('/patienthome')
+
+def edit_diet_view(request):
+    if(request.method=='POST'):
+        sid=request.POST.get('tbId')
+        foodname = request.POST.get('tbFoodName')
+
+        foodtimings = request.POST.get('tbHiddenTime')
+
+        fooddays = request.POST.get('tbHiddenDays')
+        foodduration = request.POST.get('tbDuration')
+        print("ffffffffffffffffffffff---", fooddays)
+        try:
+            rec = DietDetails.objects.get(id=sid)
+            rec.fooditem=foodname
+            rec.foodtimes=foodtimings
+            rec.foodtakenday=fooddays
+            rec.takenduration=foodduration
+            rec.save()
+            return redirect('/patienthome')
+        except Exception as ex:
+            print(ex)
+    else:
+
+     sid=request.GET.get('id')
+     records=DietDetails.objects.get(id=sid)
+     context={'data':records}
+     return render(request,'patient/editdiet.html',context)
