@@ -1,0 +1,41 @@
+
+{% extends 'patient/dashboardbase.html' %}
+
+{% block content %}
+
+    {% if data %}
+    <h2>
+    Your Diet Schedule
+    </h2>
+
+ <table style="background:#ffefef " class="table table-striped">
+    <thead>
+      <tr>
+        <th>Food Name</th>
+        <th>Timings</th>
+        <th>Days</th>
+          <th>Duration</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for rec in data %}
+      <tr>
+        <td>{{ rec.fooditem }}</td>
+        <td>{{ rec.foodtimes }}</td>
+        <td>{{ rec.foodtakenday }}</td>
+        <td>{{ rec.takenduration }}</td>
+      </tr>
+    {% endfor %}
+
+    </tbody>
+  </table>
+
+        {% else %}
+        <h2>
+        You have no any diet schedule
+        </h2>
+
+{% endif %}
+
+
+{% endblock %}
